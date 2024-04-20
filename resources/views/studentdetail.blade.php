@@ -1,23 +1,11 @@
 @extends('layouts.main')
 @section('title', $student['name'])
 @section('content')
-    <div class="container">
 
-        <div class="row">
-            <div class="col">
-
-                <h1> Biodata </h1>
-                <img src="{{ asset('storage/images/') .'/'. $student['image'] }}" alt="{{ $student['name'] }}" style="width: 50em;">
-                <p>Nama : {{ $student['name'] }}</p>
-                <p>NIM : {{$student['nim']}}</p>
-                <p>jurusan : {{$student['major']}} </p>
-            </div>
-        </div>
-    </div>
-    <section class="vh-100" style="background-color: #f4f5f7;">
+    <section class="vh-100" style="background-color: #1d7676;">
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col col-lg-6 mb-4 mb-lg-0">
+            <div class="col col-lg-9 mb-4 mb-lg-0">
               <div class="card mb-3" style="border-radius: .5rem;">
                 <div class="row g-0">
                   <div class="col-md-4 gradient-custom text-center text-white"
@@ -39,7 +27,7 @@
                         </div>
                         <div class="col-6 mb-3">
                           <h6>Phone</h6>
-                          <p class="text-muted">123 456 789</p>
+                          <p class="text-muted"> {{$student['phone_number']}} </p>
                         </div>
                       </div>
                       <h6>Projects</h6>
