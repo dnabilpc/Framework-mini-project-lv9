@@ -52,6 +52,9 @@ class StudentController extends Controller
     }
 
     public function update(Request $request, Student $student){
+        // echo $student;
+        // echo "student id : " . $student->id;
+        // dd($request);
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max : 250',
             'nim' => 'required|string|max:10|regex:/^\d+$/',
@@ -63,17 +66,19 @@ class StudentController extends Controller
         if($validator->fails()){
             return back()->withErrors($validator)->withInput();
         }
-
         $imageName = $student->image;
         if($request->hasFile('image')){
 
             //jika user memasukkan gambar baru maka gambar lama akan dihapus
-            Storage::delete('public/img' . $imageName);
+            //gambar dummy tidak akan dihapus untuk memudahkan proses development
+            if(!str_contains($imageName, "dummy")){
+                Storage::delete('public/images/' . $imageName);
+            }
 
             //menyimpan gambar baru
-            $file = $request->file('img_path');
+            $file = $request->file('image');
             $imageName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('public/img', $imageName);
+            $file->storeAs('public/images', $imageName);
         }
         Student::where('id', $student->id)->update([
             'name' => $request->name,
@@ -83,10 +88,14 @@ class StudentController extends Controller
             'phone_number' => $request->phone_number,
             'image' => $imageName
         ]);
+        return redirect('/student')->with('status', 'Behasil Mengedit Data Yes sirr!');
     }
 
     public function destroy(Student $student){
-        Storage::delete('public/img/' . $student->image);
+        // dd($student);
+        if(!str_contains($student['image'], "dummy")){
+            Storage::delete('public/images/' . $student->image);
+        }
         $student->delete();
 
         return redirect('/student')->with('status', 'Berhasil Menghapus Data Yaaay!');

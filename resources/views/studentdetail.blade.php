@@ -5,13 +5,13 @@
     <section class="vh-100" style="background-color: #1d7676;">
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col col-lg-9 mb-4 mb-lg-0">
-              <div class="card mb-3" style="border-radius: .5rem;">
-                <div class="row g-0">
+            <div class="col col-lg-8 mb-4 mb-lg-0">
+              <div class="card mb-4" style="border-radius: .5rem; height: 60vh;">
+                <div class="row g-0"  style="height: 60vh;">
                   <div class="col-md-4 gradient-custom text-center text-white"
                     style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
                     <img src=" {{ asset('storage/images/') .'/'. $student['image'] }} "
-                      alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
+                      alt="Avatar" class="img-fluid my-5" style="width: 200px;" />
                     <h5>{{ $student['name'] }}</h5>
                     <p>{{$student['major']}}</p>
                     <i class="far fa-edit mb-5"></i>

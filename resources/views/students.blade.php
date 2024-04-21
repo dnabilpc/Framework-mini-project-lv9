@@ -24,7 +24,13 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $student['name'] }}</h5>
                         <p class="card-text">{{ $student['description'] }}</p>
-                        <a href="{{ route('student.show', ['student' => $student['id']]); }}" class="btn btn-primary">Info Selengkapnya</a>
+                        <a href="{{ route('student.show', $student['id']); }}" class="btn btn-primary">Biodata Lengkap</a>
+                        <form action=" {{ route('student.destroy', ['student' => $student['id']]) }} " method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                        <a href="{{ route('student.edit', ['student' => $student['id']]); }}" class="btn btn-success">Edit</a>
                     </div>
                 </div>
             </div>
