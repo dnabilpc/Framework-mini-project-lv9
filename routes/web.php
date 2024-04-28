@@ -9,4 +9,3 @@ Route::get('/', function () {
 //Route untuk Students menggunakan Route resource grouping
 //akan otomatis terbuat route CRUD dengan nama student.(nama method)
 Route::resource('/student', StudentController::class);
-Route::put('studentUp/{student}', [StudentController::class, 'update'])->name('student.up');
